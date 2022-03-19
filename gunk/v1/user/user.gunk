@@ -1,0 +1,53 @@
+package user
+
+type User struct {
+	ID       int64  `pb:"1"`
+	Name     string `pb:"2"`
+	Email    string `pb:"3"`
+	Password string `pb:"4"`
+	EmailVerified string `pb:"5"`
+	IsVerify bool   `pb:"6"`
+}
+
+type CreateUserRequest struct {
+	User User `pb:"1"`
+}
+
+type CreateUserResponse struct {
+	ID int64 `pb:"1"`
+}
+
+type GetUserRequest struct {
+	ID int64 `pb:"1"`
+}
+
+type GetUserResponse struct {
+	User User `pb:"1"`
+}
+
+type UpdateUserRequest struct {
+	User User `pb:"1"`
+}
+
+type UpdateUserResponse struct{}
+
+type DeleteUserRequest struct {
+	ID int64 `pb:"1"`
+}
+
+type DeleteUserResponse struct{}
+
+type CompleteUserRequest struct {
+	ID int64 `pb:"1"`
+}
+
+type CompleteUserResponse struct{}
+
+
+type UserRegService interface {
+	Create(CreateUserRequest) CreateUserResponse
+	Get(GetUserRequest) GetUserResponse
+	Update(UpdateUserRequest) UpdateUserResponse
+	Delete(DeleteUserRequest) DeleteUserResponse
+	Complete(CompleteUserRequest) CompleteUserResponse
+}

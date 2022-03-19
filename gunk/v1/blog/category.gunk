@@ -1,0 +1,52 @@
+package blog
+
+type Blog struct {
+	ID          int64  `pb:"1"`
+	CatID      int64  `pb:"2"`
+	Title       string `pb:"3"`
+	Description string `pb:"4"`
+	Image       string `pb:"5"`
+	CatName     string `pb:"6"`
+}
+
+type CreateBlogRequest struct {
+	Blog Blog `pb:"1"`
+}
+
+type CreateBlogResponse struct {
+	ID int64 `pb:"1"`
+}
+
+type GetBlogRequest struct {
+	ID int64 `pb:"1"`
+}
+
+type GetBlogResponse struct {
+	Blog Blog `pb:"1"`
+}
+
+type UpdateBlogRequest struct {
+	Blog Blog `pb:"1"`
+}
+
+type UpdateBlogResponse struct{}
+
+type DeleteBlogRequest struct {
+	ID int64 `pb:"1"`
+}
+
+type DeleteBlogResponse struct{}
+
+type ListBlogRequest struct{}
+
+type ListBlogResponse struct {
+	Blog []Blog `pb:"1"`
+}
+
+type BlogService interface {
+	CreateBlog(CreateBlogRequest) CreateBlogResponse
+	GetBlog(GetBlogRequest) GetBlogResponse
+	UpdateBlog(UpdateBlogRequest) UpdateBlogResponse
+	DeleteBlog(DeleteBlogRequest) DeleteBlogResponse
+	ListBlog(ListBlogRequest) ListBlogResponse
+}

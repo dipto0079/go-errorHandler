@@ -1,0 +1,242 @@
+.wpb_row h1, .wpb_row h2, .wpb_row h3, .wpb_row h4, .wpb_row h5 { margin-top:0px;}
+
+/* .page-item-1106 a:after { display:none; width:250px; height:314px; content:''; background:url("http://themes.orange-idea.com/product_previews/valor.jpg"); position: absolute; right:-250px; top:-1px; border:1px solid #ededed;}
+.page-item-1106:hover a:after { display:block; }
+*/
+.oi_fff { color:#fff;}
+.testimonial_i_holder h5.small_width { font-style:italic; opacity:0.6; font-size:11px !important;}
+.wpb_wrapper ul.list-unstyled li { margin-bottom:3px;}
+.wpb_wrapper ul.list-unstyled .fa { margin-right:5px;}
+
+.wpb_wrapper a:not(.btn) a:not(.added_to_cart_message){ color:#ff3b2f}
+.oi_price_holder{ text-align:center !important; border:1px solid #f1f1f1; margin-bottom:40px;}
+
+.oi_price_holder .oi_price_head { padding:10px; background:rgba(0,0,0,0.05)}
+.oi_price_price { border-top:1px solid #ededed; margin:0px !important; padding:15px 0px; padding-bottom:25px;}
+.oi_price_ul ul { margin:0px !important; list-style:none !important; background:#eaeaea !important;}
+.oi_price_ul li { list-style:none !important; padding-left:0px; padding-top:10px; padding-bottom:10px;}
+.oi_price_ul li:last-child { border-bottom:0px !important;}
+.oi_price_ul li:nth-child(even) { background:#f9f9f9; border-top:1px solid #ededed; border-bottom:1px solid #ededed; color:#3a3a3a}
+.oi_price_ul p:empty { display:none !important;}
+.oi_price_order { border-top:1px solid #ededed; padding: 30px 0px;}
+.oi_price_price h1 { font-size:80px !important; line-height:70px !important; font-weight:bold !important; margin-left:18px;}
+.oi_price_price h1 span { vertical-align:super; font-size:32px; font-weight:normal !important;}
+
+.oi_price_ul p:last-child { display:none;}
+.oi_price_holder.spec { margin-top:-20px !important;}
+.oi_price_holder.spec  .oi_price_head{ padding:20px;}
+.oi_price_ul ul { padding-left:0px;}
+
+
+.wpb_widgetised_column .oi_product_list_product { padding-left:0px !important; padding-right:0px !important; margin-bottom:20px !important;}
+.mt30 { margin-top:80px !important;}
+
+
+.rev_slider .oi_submit{ color:#FFF !important;}
+
+
+
+.oi_box { padding:20px; padding-top:50px; text-align:center; background:#ffffff; margin-top:32px;}
+.oi_box .wpb_button { margin-bottom:0px;}
+.oi_box { position:relative;  margin-bottom:40px !important;}
+.oi_box_icon { }
+a.wpb_button { text-decoration:none !important;}
+.icon_holder {position:absolute; top:-32px; left:50%; margin-left:-32px; width:64px; height:64px; border-radius:64px;} 
+
+
+.oi_box_ii {padding:20px; text-align:center; background:#ffffff;}
+.icon_holder_ii {width:64px; height:64px; border-radius:64px; margin:0 auto; margin-bottom:15px;}
+
+.oi_box_iii,.oi_box_iv, .achievements {  }
+.oi_box_iv h3 { margin-top:0px;}
+.icon_holder_iii img { float:left; margin-right:10px; margin-bottom:10px;}
+.icon_holder_iii h3 { line-height:30px; font-weight:normal !important; font-size:18px;}
+
+
+.cont_holder_iv h3 { line-height:26px !important;}
+.achievements h3 { font-size:100px !important; line-height:100px; font-style:italic; font-weight:300 !important}
+.achievements { text-align:center;}
+.oi_break .achievements hr { border-top-color: rgba(0,0,0,0.1)}
+
+
+
+.testimonial_i { padding:25px;}
+.testimonial_i h3 { font-weight:normal !important; font-size:16px !important; line-height:16px !important; margin-bottom:1px !important;}
+.testimonial_i h5 { font-size:12px !important;}
+.testimonial_i_holder { padding-left:10px;}
+.testimonial_i_holder { margin-top:15px;}
+.main_testimonial_i p { font-style:italic;}
+.testimonial_i_holder hr { margin-bottom:5px !important;}
+.star_rating { height:20px; background:url("../css/img/bullet_star.png"); max-width:98px !important; position:absolute; margin-top:1px;}
+.t_comapny { text-align:right;}
+
+
+.t_comapny a { text-decoration:none; font-style:italic; padding-top:10px !important;}
+.blank_rating { height:20px; background:url("../css/img/blank_rating.png"); width:98px; position:absolute; margin-top:-2px; opacity:0.3}
+.testimonial_i_holder hr {border-top-color: rgba(0,0,0,0.06)}
+
+
+.testimonial_i_holder h3 { margin-top:0px;}
+.testimonial_i_holder a { color:#000;}
+
+
+
+
+
+
+
+
+.wpb_gallery_slides { box-shadow:none !important; border:1px solid #f1f1f1 !important; padding:15px !important; margin-bottom:0px !important;}
+.oi_grid .wpb_gallery_slides { box-shadow:none !important; border:none !important; background: none !important; padding:0px !important;}
+.oi_grid .wpb_gallery_slides img:hover { opacity:0.6}
+.wpb_gallery_slides .blog_item { background:none !important; border:none !important; padding: 0px !important; margin-top:15px;}
+.wpb_gallery_slides .blog_head { margin-bottom:5px;}
+.wpb_gallery_slides .flex-control-nav { display:none}
+.wpb_gallery_slides .flex-direction-nav li { display:block !important; visibility:visible !important;}
+.wpb_image_grid { padding:0px !important; border:none !important;}
+
+
+
+
+
+.vc_team_member_holder h3 { margin-bottom:-4px !important; font-weight:normal !important; margin-top:10px;}
+.vc_team_member_holder h5 { margin-bottom:10px !important; color:#333; margin-top:10px;}
+.vc_team_member_holder { background:#fff; margin-bottom:30px;}
+.oi_cont_holder { padding:15px; background:#f3f3ef}
+.oi_cont_holder h6 { font-size:10px; opacity:0.6}
+.oi_team_cont { margin-top:20px;}
+
+.vc_team_member_image_holder { position:relative; overflow:hidden;}
+.vc_team_member_holder .oi_mask_holder {
+	opacity:0;
+	position:absolute;
+	background:rgba(255,255,255,0);
+	display:block;
+	visibility:hidden;
+	top:0;
+	width:101%;
+	height:101%;
+	-webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+	-webkit-backface-visibility: hidden; /* fix for twitch*/
+	backface-visibility:hidden; /* fix for twitch*/
+	}
+.vc_team_member_holder  .oi_mask { position:absolute; text-align:center; margin:0 auto; top:50%; display:inline-block; width:100%; color:#666;}
+.inner_img_holder { text-align:center;}
+.vc_team_member_image_holder:hover .oi_mask_holder {
+	opacity:1;
+	visibility:visible;
+	-webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+	}
+
+.oi_icons a{
+	margin-top:20px;
+	color:#000;
+	display:inline-block;
+	background-position:center;
+	background-repeat:no-repeat;
+	width:30px !important;
+	height:30px !important;
+	-webkit-backface-visibility: hidden; /* fix for twitch*/
+	zoom:1;
+	margin-left:-1px;
+	visibility:hidden;
+	-webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+	-webkit-backface-visibility: hidden; /* fix for twitch*/
+	backface-visibility:hidden; /* fix for twitch*/
+	opacity:0;
+}
+.vc_team_member_image_holder:hover .oi_icons a {
+	visibility:visible;
+	opacity:1;
+	-webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+	-webkit-backface-visibility: hidden; /* fix for twitch*/
+	backface-visibility:hidden; /* fix for twitch*/
+	
+}
+.oi_mask h5{
+	opacity:0;
+	margin-bottom:30px !important;
+	margin-top:-40px;
+	display:block;
+	-webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+	-webkit-backface-visibility: hidden; /* fix for twitch*/
+	backface-visibility:hidden; /* fix for twitch*/
+}
+.vc_team_member_image_holder:hover .oi_mask h5, .oi_mask_holder
+{ opacity:1;
+	-webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+	-webkit-backface-visibility: hidden; /* fix for twitch*/
+	backface-visibility:hidden; /* fix for twitch*/
+	}
+.oi_mask h5 span { display:inline-block;  background:#fff; padding:5px; border-radius:4px;}
+.oi_icons a:hover { opacity:1 !important;}
+
+
+.oi_price_holder{ text-align:center !important; border:1px solid #ededed; margin-bottom:40px; background:#fafafa;}
+
+.oi_price_holder .oi_price_head { padding:10px; background:rgba(0,0,0,0.05)}
+.oi_price_price { border-top:1px solid rgba(255,255,255,0.2); margin:0px !important; padding:15px 0px; padding-bottom:25px;}
+.oi_price_ul ul { margin:0px !important; list-style:none !important; background:#ffffff;}
+.oi_price_ul li { list-style:none !important; padding-left:0px; padding-top:10px; padding-bottom:10px;}
+.oi_price_ul li:last-child { border-bottom:0px !important;}
+.oi_price_ul li:nth-child(even) { background:#f9f9f9; border-top:1px solid #ededed; border-bottom:1px solid #ededed; color:#3a3a3a}
+.oi_price_ul p:empty { display:none !important;}
+.oi_price_order { border-top:1px solid #ededed; padding: 30px 0px;}
+.oi_price_price h1 { font-size:80px !important; line-height:70px !important; font-weight:bold !important; margin-left:18px;}
+.oi_price_price h1 span { vertical-align:super; font-size:32px; font-weight:normal !important;}
+
+.oi_price_ul p:last-child { display:none;}
+.oi_price_holder.spec { margin-top:-20px !important;}
+.oi_price_holder.spec  .oi_price_head{ padding:20px;}
+
+.oi_break iframe, .wpb_gmaps_widget { border:none !important;}
+.wpb_map_wraper { padding:0px !important;} 
+
+#fields input, #fields textarea { 	width:100%;
+	padding:10px;
+	border:1px solid #eaeaea;
+	font-size:12px;
+	line-height:12px;
+	margin-bottom:20px;
+}
+
+.oi_box_iv { margin-bottom:40px;}
+.wpb_single_image a { opacity:0.6; display:block;}
+.wpb_single_image a:hover { opacity:1;}
+a.colored_w { color:#fff; text-decoration: underline}
+.img_no_mb img { margin-bottom:-35px !important;}
+.icon_holder_iv  { text-align:center; float:left; margin-bottom:20px; margin-right:20px; min-width:47px;}
+.icon_holder_iv { background:#ff3b2f; padding:10px; border-radius:5px;}
+.icon_holder_iv .fa { font-size:24px; }
+.cont_holder_iv h4 {  word-break: normal;
+font-size: 17px;
+margin-bottom: 5px !important;}
+
+
+
+.oi_team_cont_holder { padding:20px; border:none;  background:#fff; margin:0px 20px;}
+.oi_team_cont_holder h6 { margin-bottom:0px; color:#000; text-transform:uppercase;}

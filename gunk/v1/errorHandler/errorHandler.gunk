@@ -1,0 +1,55 @@
+package errorHandler
+
+import (
+	"github.com/gunk/opt/http"
+	"github.com/gunk/opt/openapiv2"
+	"time"
+)
+
+type ErrorHandler struct {
+	ID                         string    `pb:"1" json:"id"`
+	ErrorCode                  string    `pb:"2" json:"error_code"`
+	ErrorDetails               string    `pb:"3" json:"error_details"`
+	EnvType                    string    `pb:"4" json:"env_type"`
+	CreatedAt                  time.Time `pb:"5" json:"created_at"`
+	CreatedBy                  string    `pb:"6" json:"created_by"`
+	DeleteAt                   time.Time `pb:"7" json:"deleted_at"`
+	DeleteByEnvType            string    `pb:"8" json:"delete_by_env_type"`
+
+}
+
+type CreateErrorHandlerRequest struct {
+	ErrorHandler ErrorHandler `pb:"1" json:"errorHandler"`
+}
+
+type CreateErrorHandlerResponse struct {
+	ID string `pb:"1" json:"id"`
+}
+
+type GetErrorHandlerRequest struct {
+	ID string `pb:"1" json:"id"`
+}
+
+type GetErrorHandlerResponse struct {
+	ErrorHandler ErrorHandler `pb:"1" json:"errorHandler"`
+}
+
+type ListErrorHandlerRequest struct {}
+
+type ListErrorHandlerResponse struct {
+	ErrorHandler []ErrorHandler `pb:"1" json:"errorHandler"`
+}
+
+type DeleteErrorHandlerRequest struct {
+	ID        string `pb:"1" json:"id"`
+	DeleteByEnvType string `pb:"2" json:"delete_by_env_type"`
+}
+
+type DeleteErrorHandlerResponse struct{}
+
+type ErrorHandlerService interface {
+	CreateErrorHandler(CreateErrorHandlerRequest) CreateErrorHandlerResponse
+	GetErrorHandler(GetErrorHandlerRequest) GetErrorHandlerResponse
+	ListErrorHandler(ListErrorHandlerRequest) ListErrorHandlerResponse
+	DeleteErrorHandler(DeleteErrorHandlerRequest) DeleteErrorHandlerResponse
+}

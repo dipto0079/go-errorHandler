@@ -1,0 +1,124 @@
+body {
+font-family:Roboto;
+font-style:400;
+font-size:15px;
+line-height:24px;
+color:#222;
+background-color:#f5f5f5;
+}
+
+.oi_legend {
+font-family:Roboto;
+font-style:700;
+font-size:42px;
+line-height:50px;
+color:#222;
+}
+
+.oi_sub_legend {
+font-family:Roboto;
+font-style:500;
+font-size:20px;
+line-height:36px;
+color:#222;
+}
+
+h1 {
+font-family:Roboto;
+font-style:700;
+font-size:36px;
+line-height:40px;
+color:#222;
+}
+
+h2 {
+font-family:Roboto;
+font-style:500;
+font-size:30px;
+line-height:34px;
+color:#222;
+}
+
+h3 {
+font-family:Roboto;
+font-style:700;
+font-size:24px;
+line-height:28px;
+color:#222;
+}
+
+h4 {
+font-family:Roboto;
+font-style:500;
+font-size:18px;
+line-height:24px;
+color:#222;
+}
+
+h5 {
+font-family:Roboto;
+font-style:700;
+font-size:16px;
+line-height:18px;
+color:#222;
+}
+
+h6 {
+font-family:Roboto;
+font-style:400;
+font-size:16px;
+line-height:24px;
+color:#848484;
+}
+
+#scroll_to_content a:hover {
+text-decoration:none;
+color:#e83b23;
+border-color:#e83b23;
+}
+
+.oi_widget ul:not(#cbox):not(.oi_instagram_widget_ul) li a:hover {
+text-decoration:none;
+opacity:1;
+color:#e83b23;
+}
+
+.oi_header_menu ul {
+border-top-color:#e83b23!important;
+}
+
+.oi_port_sep {
+background:#e83b23!important;
+}
+
+a,a:hover,.page-numbers.current,.colored,.oi_soc_header a:hover,.oi_header_menu ul > li > a:hover,.oi_header_menu ul > li.current-menu-item > a,.oi_add_post_like:hover strong,.oi_add_post_like.oi_already_post_liked strong,.oi_already_post_liked .oi_like_post_count,.oi_blog_post_cat.oi_already_post_liked,.oi_blog_post_meta_holder,.link_url .blog_title_a:hover,.wpcf7 input.wpcf7-submit:hover,.oi_content_btn:hover,.comment-form input#submit:hover,#load_more_port_masorny_posts:hover,#wp-calendar a,#wp-calendar caption,.oi_tweet a:hover,.oi_tweet_time > a.twitter_time {
+color:#e83b23;
+}
+
+.oi_link_block a:hover,.filter_current {
+color:#e83b23!important;
+}
+
+.post-categories li:not(.current-menu-item):not(.current-menu-parent) a:after,.post-categories li:not(.current-menu-item):not(.current-menu-parent) a:hover:before,.oi_blog_post_cat a:after,.oi_readmore_btn:after,.oi_blog_post_cat a:hover:before,.oi_readmore_btn:hover:before {
+background:#e83b23;
+}
+
+.oi_breadcrumbs a:hover,.oi_readmore_btn:hover {
+color:#e83b23;
+text-decoration:none;
+}
+
+.oi_ddate,.link_post .link_date {
+color:#e83b23;
+border-bottom:1px solid #e83b23;
+}
+
+@media min-width 0px and max-width 767px{
+.post-categories > li.current-menu-item > a {
+color:#e83b23;
+}
+
+.post-categories li.active {
+background:#e83b23;
+}
+}

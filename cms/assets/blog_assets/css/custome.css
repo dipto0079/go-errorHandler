@@ -1,0 +1,231 @@
+.vc_custom_s {
+background-color:#fff!important;
+padding:120px 80px!important;
+}
+
+.vc_custom_block {
+margin-bottom:0!important;
+padding-top:120px!important;
+padding-bottom:120px!important;
+background-color:#fff!important;
+background-position:center!important;
+background-repeat:no-repeat!important;
+background-size:cover!important;
+}
+
+
+.vc_custom_partners_img {
+padding-top:100px!important;
+padding-bottom:100px!important;
+background-color:#fff!important;
+}
+
+.vc_custom_block p {
+text-align:justify;
+}
+
+.vc_custom_block_partners {
+margin-bottom:0!important;
+background-image:url(../../images/dapper-laughs-1.jpg)!important;
+background-position:center!important;
+background-repeat:no-repeat!important;
+background-size:cover!important;
+}
+
+.vc_custom_partners_img_2 {
+margin-bottom:0!important;
+background:#f9f9f9 url(../../images/9.jpg)!important;
+background-position:center!important;
+background-repeat:no-repeat!important;
+background-size:cover!important;
+}
+
+.vc_custom_partners_img_3{
+margin-bottom: 0px !important;
+background-image: url(../../images/about.jpg)!important;
+background-color: #ffffff;
+background-position: center !important;
+background-repeat: no-repeat !important;
+background-size: cover !important;
+}
+
+.vc_custom_block_partners img {
+height:auto;
+max-width:100%;
+}
+
+.vc_custom_black_block {
+margin-bottom:0!important;
+padding-top:120px!important;
+padding-bottom:120px!important;
+background-color:#000!important;
+color:#fff;
+}
+
+.vc_custom_grey_block {
+margin-bottom:0!important;
+padding-top:120px!important;
+padding-bottom:120px!important;
+background-color:#ebebeb!important;
+}
+
+.vc_custom_black_block h1 {
+text-align:center;
+color:#fff;
+}
+
+.vc_custom_sr {
+margin-bottom:0!important;
+background-color:#fff!important;
+padding:80px 40px!important;
+}
+
+.vc_custom_sr2 {
+margin-bottom:0!important;
+padding-top:100px!important;
+padding-bottom:100px!important;
+background-color:#fff!important;
+}
+.vc_custom_sr21{
+padding-top: 120px !important;
+padding-right: 60px !important;
+padding-bottom: 120px !important;
+padding-left: 60px !important;
+background-color: #ffffff !important;
+}
+
+.vc_custom_sr3 {
+margin-bottom:0!important;
+background-color:#fff!important;
+padding:120px 80px!important;
+}
+
+.vc_custom_sr4 {
+padding:120px 60px 120px 20px !important;
+}
+
+.vc_custom_sr5 {
+background-color:#f9f9f9!important;
+padding:120px 20px 120px 60px !important;
+}
+
+.vc_custom_sr6 {
+margin-bottom: 0px !important;
+padding-bottom: 60px !important;
+background-color: #ffffff !important;
+background-position: center !important;
+background-repeat: no-repeat !important;
+background-size: cover !important;
+}
+.vc_custom_sr7{
+margin-bottom: 0px !important;
+background-color: #ffffff !important;
+}
+
+.vc_team_member_holder {
+margin-bottom:0;
+}
+
+.vc_custom_text_padding {
+padding-top:80px!important;
+padding-bottom:80px!important;
+background-color:#fff!important;
+}
+
+.vc_custom_text_padding_1 {
+padding-top:40px!important;
+padding-right:40px!important;
+padding-left:40px!important;
+}
+
+.vc_custom_text_padding_2 {
+padding:80px 40px 40px!important;
+}
+
+.vc_custom_text_padding_3 {
+padding-right:40px!important;
+padding-bottom:40px!important;
+padding-left:40px!important;
+}
+
+.vc_custom_text_padding_4 {
+padding:40px!important;
+}
+
+.vc_custom_text_padding_5 {
+margin-bottom:0!important;
+background-color:#fff!important;
+padding:40px!important;
+}
+
+.vc_custom_bgff6633 {
+background-color:#f63!important;
+}
+
+.vc_custom_ffcc00 {
+background-color:#fc0!important;
+}
+
+.vc_custom_f15b26 {
+background-color:#f15b26!important;
+}
+
+.vc_custom_bgfff_mb0 {
+margin-bottom:0!important;
+background-color:#fff!important;
+}
+
+.flex-direction-nav li a {
+opacity:1;
+background:#fff;
+}
+
+.flex-direction-nav a {
+width:inherit;
+height:inherit;
+}
+
+.flex-direction-nav .flex-prev {
+left:0;
+}
+
+.flex-direction-nav a.flex-next:before {
+content:'\f002';
+}
+
+.flex-direction-nav a:before {
+font-family:flexslider-icon;
+font-size:40px;
+display:inline-block;
+content:'\f001';
+line-height:46px;
+padding:40px 30px;
+}
+
+.flex-direction-nav .flex-next {
+right:0;
+}
+
+.embed-container {
+position:relative;
+padding-bottom:56.25%;
+height:0;
+overflow:hidden;
+max-width:100%;
+}
+
+.embed-container iframe,.embed-container object,.embed-container embed {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+.vc_custom_f,.margin_bottom_0 {
+margin-bottom:0!important;
+}
+
+.vc_custom_black_block h6,.vc_custom_grey_block h1,.vc_custom_grey_block h6,.vc_custom_text_padding_1 h1,.vc_custom_text_padding_1 h6 {
+text-align:center;
+}

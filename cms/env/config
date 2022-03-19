@@ -1,0 +1,17 @@
+[runtime]
+environment="development"
+
+[server]
+host="127.0.0.1"
+port="8080"
+
+[session]
+secret="19C451AEDFB24C338A9A2A5C31D66051"
+
+[blog]
+host="127.0.0.1"
+port="3000"
+
+[csrf]
+secure="false"
+secret="test"

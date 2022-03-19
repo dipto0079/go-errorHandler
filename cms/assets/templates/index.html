@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog </title>
+    <!-- Bootstrap -->
+    <link href="assets/cms/assets/blog_assets/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' id='redux-google-fonts-css'  href='assets/cms/assets/fonts.googleapis.com/csse428.css?family=Roboto%3A400%2C700%2C500&amp;ver=1422437441' type='text/css' media='all' />
+    <link href="assets/cms/assets/blog_assets/css/main_style.css" rel="stylesheet">
+    <link href="assets/cms/assets/blog_assets/css/options.css" rel="stylesheet">
+	<link href="assets/cms/assets/blog_assets/css/custome.css" rel="stylesheet">    
+    <link rel="shortcut icon" href="assets/cms/assets/blog_assets/images/favicon.ico">
+  </head>
+  <body>
+   <div class="oi_head_holder">
+        <div class="container">
+        	<div class="row">
+            	<div class="col-md-3 col-sm-3 io_xs">
+					<a href="/"> <img src="assets/cms/assets/images/buran-logo.png"></a>
+                </div>
+                <div class="col-md-9 col-sm-9 io_xs">
+                	<i class="fa fa-bars fa-2x visible-xs oi_xs_menu"></i>
+                       <nav class="menu-general-menu-container">
+                        <ul id="menu-general-menu" class="oi_header_menu">
+                            
+                            <li><a href="/">Home</a></li>
+                            <!-- <li class="current-menu-item"><a href="">Blog</a></li> -->
+                            <li><a href="#">Add</a>
+                            <ul class="sub-menu">
+                                <li><a href="/category/create">Category Create</a></li>
+                                <li><a href="/category/list">Category list</a></li>
+                                <li><a>———</a></li>
+                                <li><a href="/blog/create">Blog Create</a></li>
+                                <li><a href="/blog/list">Blog List</a></li>
+                                
+                            </ul>
+                            </li>
+                            
+                            </ul>
+                        </nav>
+                </div>
+            </div>           
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!--Header-->
+    <!--Content-->
+    <div class="this_page">
+		<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+	                <ul class="oi_posts_ul">
+                        {{range .Blog}}
+                    	<li style="margin-bottom: 5px;">
+                            <div class="oi_full_row_post">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="oi_post_content_holder">
+                                            <div class="oi_blog_post_data_holder">
+                                                 <span class="oi_blog_post_cat"><a href="/blog/{{.ID}}" rel="category tag">{{.CatName}}</a></span> <span class="oi_blog_post_cat"></span> 
+                                            </div>
+                                            <div class="oi_blog_post_title_holder">
+                                                <h2 class="oi_legend blog_title"><a class="blog_title_a" href="/blog/{{.ID}}">{{.Title}} </a></h2>
+                                            </div>
+                                           
+                                            <div class="oi_blog_post_content_holder">
+                                                <p>{{.Description}} <a href="/blog/{{.ID}}" class="more-link"><span class="oi_readmore_btn_holder"><span class="oi_readmore_btn">Continue reading</span></span></a></p>
+                                            </div>
+                                            <div class="oi_blog_post_cat_holder">
+                                                <span class="oi_blog_post_cat"><strong><i class="fa fa-comment-o"></i> </strong> <a href="/blog/{{.ID}}"> no responses</a></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5"> 
+                                        <a class="oi_test" href="/blog/{{.ID}}"><img class="img-responsive" src="/assets/{{.Image}}" ></a>
+                                    </div>
+                                </div>
+                            </div>
+                       </li>
+                       
+                       {{end}}
+                       
+                   </ul>     
+                </div>
+            </div>
+        </div>
+	</div>
+    <!--Contetn-->
+    <!--Footer-->
+    <div class="container">
+        <div class="oi_footer">
+            <div class="row">
+                <div class="col-md-12">
+                    Copyright © 2015. Design by <a href="http://themeforest.net/user/OrangeIdea/portfolio?ref=FoxSash" target="_blank">OrangeIdea</a>. Coding by <a href="http://themeforest.net/user/FoxSash/portfolio?ref=FoxSash" target="_blank">FoxSash</a>
+                </div>
+            </div>
+        </div>
+    </div>
+   	<script src="assets/cms/assets/blog_assets/js/jquery-1.11.2.min.js"></script> 
+    <script src="assets/cms/assets/blog_assets/bootstrap/bootstrap.min.js"></script>
+    <script type='text/javascript' src='assets/cms/assets/blog_assets/js/SmoothScroll.js'></script>
+	<script type='text/javascript' src='assets/cms/assets/blog_assets/js/jquery.waitforimages.js'></script>
+    <script type='text/javascript' src='assets/cms/assets/blog_assets/js/isotope.pkgd.min.js'></script>
+    <script type='text/javascript' src='assets/cms/assets/cms/assets/blog_assets/js/lightbox.min.js'></script>
+    <script type='text/javascript' src='assets/cms/assets/blog_assets/FlexSlider/jquery.flexslider-min.js'></script>
+    <script type='text/javascript' src='assets/cms/assets/blog_assets/js/imagesloaded.js'></script>
+    <script type='text/javascript' src='assets/cms/assets/blog_assets/js/custom.js'></script>
+    <script type='text/javascript' src='assets/cms/assets/blog_assets/js/gmap3.min.js'></script>
+    <!--Footer-->
+  </body>
+
+<!-- Mirrored from themes.foxsash.com/buran/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Dec 2021 10:29:07 GMT -->
+</html>
