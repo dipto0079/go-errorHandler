@@ -1,4 +1,6 @@
 ##gunk get
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdipto0079%2Fgo-errorHandler.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdipto0079%2Fgo-errorHandler?ref=badge_shield)
+
 <hr/>
 https://github.com/gunk/gunk
 <hr/>
@@ -34,3 +36,6 @@ Commands:
 cd blog/storage/postgres
 <hr/>
 DATABASE_CONNECTION="user=postgres password=dipto host=localhost port=5432 sslmode=disable" go test -v
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdipto0079%2Fgo-errorHandler.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdipto0079%2Fgo-errorHandler?ref=badge_large)
