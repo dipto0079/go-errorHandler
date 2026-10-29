@@ -264,3 +264,64 @@ func TestHeaderSafe(t *testing.T) {
 		t.Errorf("headerSafe left a line break: %q", got)
 	}
 }
+
+func TestMetadataCodeStatsPurge(t *testing.T) {
+	h := newTestHandler(t, WithEnv("prod"))
+	ctx := context.Background()
+
+	cause := errors.New("disk full")
+	err := WithCode(fmt.Errorf("save: %w", cause), "DISK")
+	if !errors.Is(err, cause) {
+		t.Fatal("WithCode must keep the original error")
+	}
+	if WithCode(nil, "X") != nil {
+		t.Fatal("WithCode(nil) must be nil")
+	}
+
+	id, err := h.Capture(ctx, err, Meta("user", "42"), Meta("region", "bd"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	got, _ := h.Get(ctx, id)
+	if got.ErrorCode != "DISK" || got.Metadata["user"] != "42" || got.Metadata["region"] != "bd" {
+		t.Fatalf("record = code %q meta %v", got.ErrorCode, got.Metadata)
+	}
+	plain, _ := h.Create(ctx, Error{ErrorCode: "P", ErrorDetails: "p", EnvType: "dev", CreatedBy: "t"})
+	if g, _ := h.Get(ctx, plain); len(g.Metadata) != 0 {
+		t.Fatalf("empty metadata expected, got %v", g.Metadata)
+	}
+
+	if err := h.Resolve(ctx, plain); err != nil {
+		t.Fatal(err)
+	}
+	st, err := h.Stats(ctx)
+	if err != nil || st.Total != 2 || st.Open != 1 || st.Resolved != 1 || st.Last24h != 2 || st.ByEnv["prod"] != 1 || st.ByEnv["dev"] != 1 {
+		t.Fatalf("stats = %+v, %v", st, err)
+	}
+
+	future := time.Now().Add(time.Hour)
+	n, err := h.Purge(ctx, future, true)
+	if err != nil || n != 1 {
+		t.Fatalf("Purge resolvedOnly = %d, %v; want 1", n, err)
+	}
+	if _, err := h.Get(ctx, id); err != nil {
+		t.Fatalf("open error must survive resolvedOnly purge: %v", err)
+	}
+	if n, _ := h.Purge(ctx, time.Now().Add(-time.Hour), false); n != 0 {
+		t.Fatalf("purge of old cutoff removed %d", n)
+	}
+	if n, _ := h.Purge(ctx, future, false); n != 1 {
+		t.Fatalf("Purge all = %d, want 1", n)
+	}
+}
+
+func TestMiddlewareMetadata(t *testing.T) {
+	h := newTestHandler(t)
+	srv := httptest.NewServer(h.Middleware(http.HandlerFunc(func(http.ResponseWriter, *http.Request) { panic("x") })))
+	defer srv.Close()
+	http.Get(srv.URL + "/a/b")
+	l, _ := h.List(context.Background(), ListOptions{Code: "PANIC"})
+	if len(l) != 1 || l[0].Metadata["method"] != "GET" || l[0].Metadata["path"] != "/a/b" {
+		t.Fatalf("metadata = %+v", l)
+	}
+}

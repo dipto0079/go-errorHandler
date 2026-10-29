@@ -39,10 +39,19 @@ The same error (same code, environment and message) that is still open is stored
 `OccurrenceCount` goes up. Once you `Resolve` it, the next occurrence opens a new record.
 If the error has an `ErrorCode() string` method, that is used as the code.
 
+Attach context with `Meta`, and give any error a code with `WithCode`:
+
+```go
+return errorhandler.WithCode(fmt.Errorf("save order: %w", err), "ORDER_SAVE") // errors.Is still works
+h.Capture(ctx, err, errorhandler.Meta("user_id", "42"), errorhandler.Meta("region", "bd"))
+```
+
+Do not put secrets or personal data in the message or metadata, they are stored as plain text.
+
 ### Record panics in a web server
 
 ```go
-http.ListenAndServe(":8080", h.Middleware(mux)) // net/http, gorilla/mux, chi
+http.ListenAndServe(":8080", h.Middleware(mux)) // net/http, gorilla/mux, chi; stores method and path as metadata
 ```
 
 ### Notifications
@@ -78,6 +87,8 @@ err = h.Delete(ctx, id, "production") // soft delete, hidden from List unless In
 | `List(ctx, ListOptions)` | Newest first; filter by env, status, code, time; paginate |
 | `Resolve(ctx, id)` | Mark as resolved |
 | `Delete(ctx, id, env)` | Soft delete, records the environment that deleted it |
+| `Stats(ctx)` | Counts: total, open, resolved, last 24h, per environment |
+| `Purge(ctx, before, resolvedOnly)` | Permanently delete old records (retention). Cannot be undone |
 | `Migrate(ctx)` | Create/upgrade the table |
 | `Close()` | Close the database connection |
 

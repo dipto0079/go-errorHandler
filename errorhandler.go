@@ -26,6 +26,12 @@ import (
 // Error is a stored error record.
 type Error = storage.ErrorHandler
 
+// Metadata is free-form key/value context stored with an error.
+type Metadata = storage.Metadata
+
+// Stats summarises stored errors that are not deleted.
+type Stats = storage.Stats
+
 // ErrNotFound is returned when an error record does not exist.
 var ErrNotFound = storage.NotFound
 
@@ -140,4 +146,18 @@ func (h *Handler) Resolve(ctx context.Context, id string) error {
 // It returns ErrNotFound if the id does not exist.
 func (h *Handler) Delete(ctx context.Context, id, env string) error {
 	return h.svc.DeleteErrorHandler(ctx, id, env)
+}
+
+// Stats returns counts of stored errors: total, open, resolved, seen in the
+// last 24 hours, and per environment. Deleted errors are not counted.
+func (h *Handler) Stats(ctx context.Context) (Stats, error) {
+	return h.st.ErrorStats(ctx)
+}
+
+// Purge permanently removes errors last seen before the given time (use it for
+// retention, e.g. Purge(ctx, time.Now().AddDate(0, 0, -90), true)). With
+// resolvedOnly, open errors are kept. This cannot be undone. It returns how
+// many records were removed.
+func (h *Handler) Purge(ctx context.Context, before time.Time, resolvedOnly bool) (int64, error) {
+	return h.st.PurgeErrors(ctx, before, resolvedOnly)
 }

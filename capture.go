@@ -18,6 +18,35 @@ type CaptureOption func(*Error)
 // method on the error, or "ERROR".
 func Code(code string) CaptureOption { return func(e *Error) { e.ErrorCode = code } }
 
+// Meta adds a key/value to the record's metadata (user id, request id, region...).
+// Do not put secrets or personal data in it.
+func Meta(key, value string) CaptureOption {
+	return func(e *Error) {
+		if e.Metadata == nil {
+			e.Metadata = Metadata{}
+		}
+		e.Metadata[key] = value
+	}
+}
+
+// WithCode attaches an error code to err. Capture uses it as the record's
+// code. The original error stays available through errors.Is/As.
+func WithCode(err error, code string) error {
+	if err == nil {
+		return nil
+	}
+	return &codedError{err: err, code: code}
+}
+
+type codedError struct {
+	err  error
+	code string
+}
+
+func (c *codedError) Error() string     { return c.err.Error() }
+func (c *codedError) Unwrap() error     { return c.err }
+func (c *codedError) ErrorCode() string { return c.code }
+
 // By sets who created the record, overriding the handler's service name.
 func By(who string) CaptureOption { return func(e *Error) { e.CreatedBy = who } }
 
@@ -84,7 +113,7 @@ func (h *Handler) Middleware(next http.Handler) http.Handler {
 			// The request context is cancelled when the client disconnects.
 			ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 			defer cancel()
-			_, _ = h.capture(ctx, err, string(debug.Stack()), []CaptureOption{Code("PANIC")})
+			_, _ = h.capture(ctx, err, string(debug.Stack()), []CaptureOption{Code("PANIC"), Meta("method", r.Method), Meta("path", r.URL.Path)})
 			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		}()
 		next.ServeHTTP(w, r)

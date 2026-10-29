@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/lib/pq"
 	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
@@ -20,7 +21,8 @@ INSERT INTO errorhandler (
 	created_by,
 	stack_trace,
 	fingerprint,
-	last_seen_at
+	last_seen_at,
+	metadata
 ) VALUES (
 	:error_code,
 	:error_details,
@@ -29,7 +31,8 @@ INSERT INTO errorhandler (
 	:created_by,
 	:stack_trace,
 	:fingerprint,
-	:created_at
+	:created_at,
+	:metadata
 )
 ON CONFLICT (fingerprint) WHERE fingerprint <> '' AND status = 'open' AND deleted_at IS NULL
 DO UPDATE SET
@@ -77,7 +80,8 @@ const errorColumns = `
 	fingerprint,
 	occurrence_count,
 	last_seen_at,
-	resolved_at
+	resolved_at,
+	metadata
 `
 
 const getError = `SELECT ` + errorColumns + ` FROM errorhandler WHERE id = $1 AND deleted_at IS NULL`
@@ -196,4 +200,50 @@ func (s *Storage) DeleteError(ctx context.Context, id string, env string) error 
 		return storage.NotFound
 	}
 	return nil
+}
+
+// PurgeErrors permanently removes errors last seen before the given time.
+// When resolvedOnly is true, open errors are kept. It returns the number removed.
+func (s *Storage) PurgeErrors(ctx context.Context, before time.Time, resolvedOnly bool) (int64, error) {
+	q := "DELETE FROM errorhandler WHERE last_seen_at < $1"
+	if resolvedOnly {
+		q += " AND status = 'resolved'"
+	}
+	res, err := s.db.ExecContext(ctx, q, before)
+	if err != nil {
+		return 0, err
+	}
+	return res.RowsAffected()
+}
+
+// ErrorStats counts errors that are not deleted.
+func (s *Storage) ErrorStats(ctx context.Context) (storage.Stats, error) {
+	st := storage.Stats{ByEnv: map[string]int{}}
+	var rows []struct {
+		Env    string `db:"env_type"`
+		Status string `db:"status"`
+		N      int    `db:"n"`
+		Recent int    `db:"recent"`
+	}
+	const q = `
+		SELECT env_type, status, count(*) AS n,
+		       count(*) FILTER (WHERE last_seen_at >= now() - interval '24 hours') AS recent
+		FROM errorhandler
+		WHERE deleted_at IS NULL
+		GROUP BY env_type, status`
+	if err := s.db.SelectContext(ctx, &rows, q); err != nil {
+		return st, err
+	}
+	for _, r := range rows {
+		st.Total += r.N
+		st.Last24h += r.Recent
+		st.ByEnv[r.Env] += r.N
+		switch r.Status {
+		case storage.StatusOpen:
+			st.Open += r.N
+		case storage.StatusResolved:
+			st.Resolved += r.N
+		}
+	}
+	return st, nil
 }
