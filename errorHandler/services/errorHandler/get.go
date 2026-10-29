@@ -2,7 +2,9 @@ package errorHandler
 
 import (
 	"context"
+	"errors"
 
+	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
 	erHan "github.com/dipto0079/go-errorHandler/gunk/v1/errorHandler"
 
 	"google.golang.org/grpc/codes"
@@ -14,8 +16,10 @@ func (s *Svc) GetErrorHandler(ctx context.Context, req *erHan.GetErrorHandlerReq
 
 	res, err := s.erHan.GetErrorHandler(ctx, req.ID)
 	if err != nil {
-
-		return nil, status.Error(codes.NotFound, "GetErrorHandler doesn't exists")
+		if errors.Is(err, storage.NotFound) {
+			return nil, status.Error(codes.NotFound, "GetErrorHandler doesn't exists")
+		}
+		return nil, status.Error(codes.Internal, "processing failed")
 	}
 
 	getAnn := &erHan.GetErrorHandlerResponse{

@@ -2,10 +2,9 @@ package postgres
 
 import (
 	"context"
+	"database/sql"
 
 	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 const insertError = `
@@ -33,8 +32,8 @@ func (s *Storage) CreateError(ctx context.Context, errors storage.ErrorHandler) 
 	}
 	defer stmt.Close()
 	var id string
-	if err := stmt.Get(&id, errors); err != nil {
-		return "", status.Errorf(codes.Internal, "processing failed")
+	if err := stmt.GetContext(ctx, &id, errors); err != nil {
+		return "", err
 	}
 
 	return id, nil
@@ -54,8 +53,10 @@ const getError = `
 func (s *Storage) GetError(ctx context.Context, id string) (*storage.ErrorHandler, error) {
 
 	var errorHandler storage.ErrorHandler
-	if err := s.db.Get(&errorHandler, getError, id); err != nil {
-
+	if err := s.db.GetContext(ctx, &errorHandler, getError, id); err != nil {
+		if err == sql.ErrNoRows {
+			return nil, storage.NotFound
+		}
 		return nil, err
 	}
 	return &errorHandler, nil
@@ -65,7 +66,7 @@ func (s *Storage) ListError(ctx context.Context) ([]storage.ErrorHandler, error)
 
 	var errors []storage.ErrorHandler
 
-	if err := s.db.Select(&errors, "SELECT * FROM errorhandler ORDER BY id DESC"); err != nil {
+	if err := s.db.SelectContext(ctx, &errors, "SELECT * FROM errorhandler ORDER BY id DESC"); err != nil {
 
 		return errors, err
 	}
@@ -84,10 +85,12 @@ const deleteError = `
 
 func (s *Storage) DeleteError(ctx context.Context, id string, env string) error {
 
-	_, err := s.db.Exec(deleteError, env, id)
+	res, err := s.db.ExecContext(ctx, deleteError, env, id)
 	if err != nil {
-
 		return err
+	}
+	if n, err := res.RowsAffected(); err == nil && n == 0 {
+		return storage.NotFound
 	}
 	return nil
 }

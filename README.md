@@ -17,6 +17,11 @@ h, err := errorhandler.New("user=postgres password=secret host=localhost port=54
 if err != nil {
 	log.Fatal(err)
 }
+defer h.Close()
+
+if err := h.Migrate(ctx); err != nil { // creates the table if missing, safe to call every start
+	log.Fatal(err)
+}
 
 id, err := h.Create(ctx, errorhandler.Error{
 	ErrorCode:    "E100",
@@ -25,7 +30,7 @@ id, err := h.Create(ctx, errorhandler.Error{
 	CreatedBy:    "api",
 })
 
-e, err := h.Get(ctx, id)
+e, err := h.Get(ctx, id) // errors.Is(err, errorhandler.ErrNotFound) when missing
 all, err := h.List(ctx)
 err = h.Delete(ctx, id, "production") // soft delete
 ```
@@ -36,10 +41,14 @@ err = h.Delete(ctx, id, "production") // soft delete
 | `Get(ctx, id)` | Fetch one error |
 | `List(ctx)` | List errors |
 | `Delete(ctx, id, env)` | Soft delete, records the environment that deleted it |
+| `Migrate(ctx)` | Create the table if it does not exist |
+| `Close()` | Close the database connection |
+
+Already have a `*sql.DB`? Use `errorhandler.NewWithDB(db)` instead of `New`.
 
 ## Database setup
 
-The `errorhandler` table is defined in [errorHandler/migrations/sql](errorHandler/migrations/sql). Create it by running the SQL by hand, or with the bundled goose runner:
+`Migrate(ctx)` creates the table for you. The SQL is also available in [errorHandler/migrations/sql](errorHandler/migrations/sql). You can run it by hand or with the bundled goose runner:
 
 ```bash
 cp errorHandler/env/sample.config errorHandler/env/config   # then edit the [database] section

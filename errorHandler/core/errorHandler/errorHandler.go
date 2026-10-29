@@ -5,9 +5,6 @@ import (
 
 	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
 	"github.com/dipto0079/go-errorHandler/errorHandler/storage/postgres"
-
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 type ErrorCoreSvc struct {
@@ -24,8 +21,7 @@ func (cs ErrorCoreSvc) CreateErrorHandler(ctx context.Context, errorHandler stor
 
 	id, err := cs.st.CreateError(ctx, errorHandler)
 	if err != nil {
-
-		return "", status.Error(codes.Internal, "processing failed")
+		return "", err
 	}
 
 	return id, nil
@@ -34,29 +30,22 @@ func (cs ErrorCoreSvc) CreateErrorHandler(ctx context.Context, errorHandler stor
 func (cs ErrorCoreSvc) GetErrorHandler(ctx context.Context, id string) (*storage.ErrorHandler, error) {
 
 	errorhan, err := cs.st.GetError(ctx, id)
-	if err != nil && err != storage.NotFound {
-
-		return nil, status.Error(codes.Internal, "processing failed")
+	if err != nil {
+		return nil, err
 	}
 	return errorhan, nil
 }
 
 func (cs ErrorCoreSvc) DeleteErrorHandler(ctx context.Context, id string, env string) error {
 
-	if err := cs.st.DeleteError(ctx, id, env); err != nil {
-
-		return status.Error(codes.Internal, "processing failed")
-	}
-
-	return nil
+	return cs.st.DeleteError(ctx, id, env)
 }
 
 func (cs ErrorCoreSvc) ListErrorHandler(ctx context.Context) ([]storage.ErrorHandler, error) {
 
 	res, err := cs.st.ListError(ctx)
 	if err != nil {
-
-		return res, status.Error(codes.Internal, "processing failed")
+		return nil, err
 	}
 
 	return res, nil
