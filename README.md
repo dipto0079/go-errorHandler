@@ -2,7 +2,11 @@
 
 A small Go package that stores application errors in PostgreSQL. It also ships a gRPC server for the same operations.
 
+[![test](https://github.com/dipto0079/go-errorHandler/actions/workflows/test.yml/badge.svg)](https://github.com/dipto0079/go-errorHandler/actions/workflows/test.yml)
+
 ## Install
+
+Needs Go 1.18+ and PostgreSQL 9.5+.
 
 ```bash
 go get github.com/dipto0079/go-errorHandler
@@ -107,6 +111,12 @@ go run ./migrations up
 
 Other commands: `down`, `redo`, `status`, `version`, `create NAME sql`.
 
+### Upgrading
+
+Call `Migrate(ctx)` after updating the module so new columns are added. Releases before v0.3.1 stored
+timestamps without a time zone; `Migrate` converts them to `timestamptz`, reading old values in the
+database's time zone.
+
 ## gRPC server
 
 ```bash
@@ -114,6 +124,9 @@ go run ./errorHandler
 ```
 
 It reads `errorHandler/env/config` and listens on `server.host:server.port`.
+
+The gRPC API has Create, Get, List and Delete only. It does not yet expose status, occurrence count,
+stack trace or metadata, and has no Resolve; use the Go package for those.
 
 To regenerate the gRPC code from [gunk/v1/errorHandler/errorHandler.gunk](gunk/v1/errorHandler/errorHandler.gunk):
 
@@ -123,10 +136,14 @@ cd gunk && ./generate.sh
 
 ## Tests
 
+The tests need a PostgreSQL server. They create and drop their own temporary databases, so give the
+connection string without `dbname`:
+
 ```bash
-cd errorHandler/storage/postgres
-DATABASE_CONNECTION="user=postgres password=secret host=localhost port=5432 sslmode=disable" go test -v
+DATABASE_CONNECTION="user=postgres password=secret host=localhost port=5432 sslmode=disable" go test ./...
 ```
+
+Without `DATABASE_CONNECTION` the root package tests are skipped.
 
 ## License
 
