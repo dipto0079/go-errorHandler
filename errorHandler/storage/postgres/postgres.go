@@ -18,7 +18,7 @@ type Storage struct {
 func NewStorage(dbstring string) (*Storage, error) {
 	db, err := sqlx.Connect("postgres", dbstring)
 	if err != nil {
-		return nil, fmt.Errorf("unable to connect to postgres '%s'", dbstring)
+		return nil, fmt.Errorf("unable to connect to postgres: %w", err)
 	}
 	db.SetMaxOpenConns(10)
 	db.SetConnMaxLifetime(time.Hour)

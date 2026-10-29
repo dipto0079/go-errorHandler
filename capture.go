@@ -81,7 +81,10 @@ func (h *Handler) Middleware(next http.Handler) http.Handler {
 				panic(rec)
 			}
 			err := fmt.Errorf("%s %s: panic: %v", r.Method, r.URL.Path, rec)
-			_, _ = h.capture(r.Context(), err, string(debug.Stack()), []CaptureOption{Code("PANIC")})
+			// The request context is cancelled when the client disconnects.
+			ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+			defer cancel()
+			_, _ = h.capture(ctx, err, string(debug.Stack()), []CaptureOption{Code("PANIC")})
 			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		}()
 		next.ServeHTTP(w, r)

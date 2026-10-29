@@ -3,9 +3,11 @@ package postgres
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"fmt"
 	"strings"
 
+	"github.com/lib/pq"
 	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
 )
 
@@ -84,7 +86,7 @@ func (s *Storage) GetError(ctx context.Context, id string) (*storage.ErrorHandle
 
 	var errorHandler storage.ErrorHandler
 	if err := s.db.GetContext(ctx, &errorHandler, getError, id); err != nil {
-		if err == sql.ErrNoRows {
+		if err == sql.ErrNoRows || isInvalidID(err) {
 			return nil, storage.NotFound
 		}
 		return nil, err
@@ -149,11 +151,20 @@ const resolveError = `
 	WHERE id = $1 AND deleted_at IS NULL
 `
 
+// isInvalidID reports whether err is Postgres rejecting a non-numeric id.
+func isInvalidID(err error) bool {
+	var pe *pq.Error
+	return errors.As(err, &pe) && pe.Code == "22P02"
+}
+
 // ResolveError marks an error as resolved. A later occurrence of the same
 // error starts a new open row.
 func (s *Storage) ResolveError(ctx context.Context, id string) error {
 	res, err := s.db.ExecContext(ctx, resolveError, id)
 	if err != nil {
+		if isInvalidID(err) {
+			return storage.NotFound
+		}
 		return err
 	}
 	if n, err := res.RowsAffected(); err == nil && n == 0 {
@@ -169,13 +180,16 @@ const deleteError = `
 		deleted_at = now(),
 		delete_by_env_type = $1
 	WHERE 
-		id = $2
+		id = $2 AND deleted_at IS NULL
 `
 
 func (s *Storage) DeleteError(ctx context.Context, id string, env string) error {
 
 	res, err := s.db.ExecContext(ctx, deleteError, env, id)
 	if err != nil {
+		if isInvalidID(err) {
+			return storage.NotFound
+		}
 		return err
 	}
 	if n, err := res.RowsAffected(); err == nil && n == 0 {
