@@ -11,25 +11,11 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	tc "errorHandler/errorHandler/core/category"
+	tpe "errorHandler/gunk/v1/errorHandler"
 
-	tb "errorHandler/errorHandler/core/blog"
-
-	us "errorHandler/errorHandler/core/user"
-
-	tpc "errorHandler/gunk/v1/category"
-
-	tpb "errorHandler/gunk/v1/blog"
-
-	tpu "errorHandler/gunk/v1/user"
-
-	//	err "errorHandler/gunk/v1/errorHandler"
-
+	"errorHandler/errorHandler/core/errorHandler"
 	"errorHandler/errorHandler/storage/postgres"
-
-	"errorHandler/errorHandler/services/blog"
-	"errorHandler/errorHandler/services/category"
-	"errorHandler/errorHandler/services/user"
+	errsvc "errorHandler/errorHandler/services/errorHandler"
 )
 
 func main() {
@@ -38,7 +24,7 @@ func main() {
 			strings.NewReplacer(".", "_"),
 		),
 	)
-	config.SetConfigFile("category/env/config")
+	config.SetConfigFile("errorHandler/env/config")
 	config.SetConfigType("ini")
 	config.AutomaticEnv()
 	if err := config.ReadInConfig(); err != nil {
@@ -52,23 +38,8 @@ func main() {
 		log.Fatalf("failed to connect database: %s", err)
 	}
 
-	cs := tc.NewCoreSve(store)
-
-	bc := tb.NewCoreSve(store)
-
-	usr := us.NewCoreSve(store)
-
-	u := user.NewUserServer(usr)
-
-	s := category.NewCategoryServer(cs)
-
-	b := blog.NewCategoryServer(bc)
-
-	tpu.RegisterUserRegServiceServer(grpcServer, u)
-
-	tpc.RegisterCategoryServiceServer(grpcServer, s)
-
-	tpb.RegisterBlogServiceServer(grpcServer, b)
+	core := errorHandler.New(store)
+	tpe.RegisterErrorHandlerServiceServer(grpcServer, errsvc.New(core))
 
 	host, port := config.GetString("server.host"), config.GetString("server.port")
 

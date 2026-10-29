@@ -1,7 +1,7 @@
 package main
 
 import (
-	"blog/category/storage/postgres"
+	"errorHandler/errorHandler/storage/postgres"
 	"log"
 )
 

@@ -31,6 +31,6 @@ Commands:
 ##test
 <hr/>
 <hr/>
-cd blog/storage/postgres
+cd errorHandler/storage/postgres
 <hr/>
 DATABASE_CONNECTION="user=postgres password=dipto host=localhost port=5432 sslmode=disable" go test -v
