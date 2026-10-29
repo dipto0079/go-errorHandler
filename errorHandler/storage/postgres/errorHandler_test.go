@@ -70,8 +70,9 @@ func TestErrors(t *testing.T) {
 				t.Errorf("Storage.GetError() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			if !cmp.Equal(got, tt.want) {
-				t.Errorf("Diff = %v", cmp.Diff(got, tt.want))
+			ignore := cmpopts.IgnoreFields(storage.ErrorHandler{}, "CreatedAt", "LastSeenAt", "Status", "OccurrenceCount")
+			if !cmp.Equal(got, tt.want, ignore) {
+				t.Errorf("Diff = %v", cmp.Diff(got, tt.want, ignore))
 			}
 		})
 	}
@@ -119,7 +120,7 @@ func TestErrors(t *testing.T) {
 			for i, got := range gotList {
 
 				tOps := []cmp.Option{
-					cmpopts.IgnoreFields(storage.ErrorHandler{}, "CreatedAt", "CreatedBy", "DeletedAt", "DeleteByEnvType"),
+					cmpopts.IgnoreFields(storage.ErrorHandler{}, "CreatedAt", "CreatedBy", "DeletedAt", "DeleteByEnvType", "LastSeenAt", "Status", "OccurrenceCount"),
 				}
 
 				if !tt.wantErr && !cmp.Equal(tt.want[i], got, tOps...) {

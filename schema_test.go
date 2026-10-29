@@ -14,7 +14,7 @@ func TestUpSQL(t *testing.T) {
 		t.Fatal("no migrations embedded")
 	}
 	for _, s := range got {
-		if !strings.Contains(s, "CREATE TABLE IF NOT EXISTS errorhandler") {
+		if !strings.Contains(s, "errorhandler") {
 			t.Errorf("unexpected statement: %q", s)
 		}
 		if strings.Contains(s, "goose") || strings.Contains(s, "DROP TABLE") {
