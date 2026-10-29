@@ -3,7 +3,7 @@ package postgres
 import (
 	"context"
 
-	"errorHandler/errorHandler/storage"
+	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

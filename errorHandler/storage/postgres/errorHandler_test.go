@@ -5,7 +5,7 @@ import (
 	"sort"
 	"testing"
 
-	"errorHandler/errorHandler/storage"
+	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 )

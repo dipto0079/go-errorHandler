@@ -3,7 +3,7 @@ package errorHandler
 import (
 	"context"
 
-	erHan "errorHandler/gunk/v1/errorHandler"
+	erHan "github.com/dipto0079/go-errorHandler/gunk/v1/errorHandler"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

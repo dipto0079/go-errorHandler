@@ -1,4 +1,4 @@
-module errorHandler
+module github.com/dipto0079/go-errorHandler
 
 go 1.16
 

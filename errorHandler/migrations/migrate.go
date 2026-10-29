@@ -1,7 +1,7 @@
 package main
 
 import (
-	"errorHandler/errorHandler/storage/postgres"
+	"github.com/dipto0079/go-errorHandler/errorHandler/storage/postgres"
 	"log"
 )
 

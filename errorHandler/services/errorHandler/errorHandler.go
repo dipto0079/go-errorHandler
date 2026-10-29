@@ -3,9 +3,9 @@ package errorHandler
 import (
 	"context"
 
-	"errorHandler/errorHandler/storage"
+	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
 
-	erHan "errorHandler/gunk/v1/errorHandler"
+	erHan "github.com/dipto0079/go-errorHandler/gunk/v1/errorHandler"
 )
 
 type ErrorSVC interface {

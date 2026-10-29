@@ -205,5 +205,5 @@ var ErrorHandlerService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "errorHandler/gunk/v1/errorHandler/all.proto",
+	Metadata: "github.com/dipto0079/go-errorHandler/gunk/v1/errorHandler/all.proto",
 }

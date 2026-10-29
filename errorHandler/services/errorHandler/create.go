@@ -3,8 +3,8 @@ package errorHandler
 import (
 	"context"
 
-	"errorHandler/errorHandler/storage"
-	erHan "errorHandler/gunk/v1/errorHandler"
+	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
+	erHan "github.com/dipto0079/go-errorHandler/gunk/v1/errorHandler"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

@@ -4,7 +4,7 @@ import (
 	"context"
 
 
-	erHan "errorHandler/gunk/v1/errorHandler"
+	erHan "github.com/dipto0079/go-errorHandler/gunk/v1/errorHandler"
 )
 
 func (s *Svc) DeleteErrorHandler(ctx context.Context, req *erHan.DeleteErrorHandlerRequest) (*erHan.DeleteErrorHandlerResponse, error) {

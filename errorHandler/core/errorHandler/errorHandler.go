@@ -3,8 +3,8 @@ package errorHandler
 import (
 	"context"
 
-	"errorHandler/errorHandler/storage"
-	"errorHandler/errorHandler/storage/postgres"
+	"github.com/dipto0079/go-errorHandler/errorHandler/storage"
+	"github.com/dipto0079/go-errorHandler/errorHandler/storage/postgres"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

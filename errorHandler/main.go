@@ -11,11 +11,11 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	tpe "errorHandler/gunk/v1/errorHandler"
+	tpe "github.com/dipto0079/go-errorHandler/gunk/v1/errorHandler"
 
-	"errorHandler/errorHandler/core/errorHandler"
-	"errorHandler/errorHandler/storage/postgres"
-	errsvc "errorHandler/errorHandler/services/errorHandler"
+	"github.com/dipto0079/go-errorHandler/errorHandler/core/errorHandler"
+	"github.com/dipto0079/go-errorHandler/errorHandler/storage/postgres"
+	errsvc "github.com/dipto0079/go-errorHandler/errorHandler/services/errorHandler"
 )
 
 func main() {

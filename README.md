@@ -1,3 +1,18 @@
+# go-errorHandler
+
+```bash
+go get github.com/dipto0079/go-errorHandler
+```
+
+```go
+import errorhandler "github.com/dipto0079/go-errorHandler"
+
+h, err := errorhandler.New("user=postgres password=... host=localhost port=5432 dbname=mydb sslmode=disable")
+id, err := h.Create(ctx, errorhandler.Error{ErrorCode: "E100", ErrorDetails: "boom", EnvType: "production", CreatedBy: "api"})
+```
+
+Create the table first with `errorHandler/migrations/sql/*.sql`.
+
 ##gunk get
 <hr/>
 https://github.com/gunk/gunk
