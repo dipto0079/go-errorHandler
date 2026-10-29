@@ -1,51 +1,71 @@
 # go-errorHandler
 
+A small Go package that stores application errors in PostgreSQL. It also ships a gRPC server for the same operations.
+
+## Install
+
 ```bash
 go get github.com/dipto0079/go-errorHandler
 ```
 
+## Usage
+
 ```go
 import errorhandler "github.com/dipto0079/go-errorHandler"
 
-h, err := errorhandler.New("user=postgres password=... host=localhost port=5432 dbname=mydb sslmode=disable")
-id, err := h.Create(ctx, errorhandler.Error{ErrorCode: "E100", ErrorDetails: "boom", EnvType: "production", CreatedBy: "api"})
+h, err := errorhandler.New("user=postgres password=secret host=localhost port=5432 dbname=mydb sslmode=disable")
+if err != nil {
+	log.Fatal(err)
+}
+
+id, err := h.Create(ctx, errorhandler.Error{
+	ErrorCode:    "E100",
+	ErrorDetails: "something went wrong",
+	EnvType:      "production",
+	CreatedBy:    "api",
+})
+
+e, err := h.Get(ctx, id)
+all, err := h.List(ctx)
+err = h.Delete(ctx, id, "production") // soft delete
 ```
 
-Create the table first with `errorHandler/migrations/sql/*.sql`.
+| Method | Description |
+| --- | --- |
+| `Create(ctx, Error)` | Store an error, returns its id |
+| `Get(ctx, id)` | Fetch one error |
+| `List(ctx)` | List errors |
+| `Delete(ctx, id, env)` | Soft delete, records the environment that deleted it |
 
-##gunk get
-<hr/>
-https://github.com/gunk/gunk
-<hr/>
-##generate
-<hr/>
-./generate.sh
-<hr/>
-##goose add
-<hr/>
-go get github.com/pressly/goose
-<hr/>
+## Database setup
 
-##migrations
-<hr/>
-go run migrations/migrate.go create create_Name_tabls sql
-<hr/>
-go run migrations/migrate.go up
-<hr/>
-Commands:
-    up                   Migrate the DB to the most recent version available
-    up-to VERSION        Migrate the DB to a specific VERSION
-    down                 Roll back the version by 1
-    down-to VERSION      Roll back to a specific VERSION
-    redo                 Re-run the latest migration
-    status               Dump the migration status for the current DB
-    version              Print the current version of the database
-    create NAME [sql|go] Creates new migration file with next version
+The `errorhandler` table is defined in [errorHandler/migrations/sql](errorHandler/migrations/sql). Create it by running the SQL by hand, or with the bundled goose runner:
 
+```bash
+cp errorHandler/env/sample.config errorHandler/env/config   # then edit the [database] section
+cd errorHandler
+go run ./migrations up
+```
 
-##test
-<hr/>
-<hr/>
+Other commands: `down`, `redo`, `status`, `version`, `create NAME sql`.
+
+## gRPC server
+
+```bash
+go run ./errorHandler
+```
+
+It reads `errorHandler/env/config` and listens on `server.host:server.port`.
+
+To regenerate the gRPC code from [gunk/v1/errorHandler/errorHandler.gunk](gunk/v1/errorHandler/errorHandler.gunk):
+
+```bash
+cd gunk && ./generate.sh
+```
+
+## Tests
+
+```bash
 cd errorHandler/storage/postgres
-<hr/>
-DATABASE_CONNECTION="user=postgres password=dipto host=localhost port=5432 sslmode=disable" go test -v
+DATABASE_CONNECTION="user=postgres password=secret host=localhost port=5432 sslmode=disable" go test -v
+```
